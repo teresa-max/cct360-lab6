@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Technically a Holiday</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header class="intro">
+        <h1>Sorry, It’s a Holiday</h1>
+        <p>
+          You're not skipping class. You're observing a public holiday
+          somewhere.
+        </p>
+      </header>
+
+      <section class="controls" aria-label="Generate an absence note">
+        <div class="field">
+          <label for="student-name">Student name</label>
+          <input
+            id="student-name"
+            type="text"
+            placeholder="Your name"
+            autocomplete="off"
+          />
+        </div>
+        <button id="excuse-button" type="button" disabled>
+          Loading holidays...
+        </button>
+      </section>
+
+      <article id="note" class="note">
+        <div class="note-header">
+          <div>
+            <p class="office">Office of Plausible Absences</p>
+            <h2>Official Absence Note</h2>
+          </div>
+          <p class="form-number">FORM 360-B</p>
+        </div>
+
+        <div class="note-body">
+          <p>To whom it may concern,</p>
+          <p id="excuse" aria-live="polite">Checking the world calendar...</p>
+        </div>
+
+        <div class="details">
+          <div>
+            <p class="detail-label">Date observed</p>
+            <p id="holiday-date" class="detail-value">—</p>
+          </div>
+          <div>
+            <p class="detail-label">Country code</p>
+            <p id="country-code" class="detail-value">—</p>
+          </div>
+        </div>
+
+        <div class="note-footer">
+          <div class="signature">
+            <p class="signature-name">The Registrar of Excuses</p>
+            <p class="detail-label">Authorized signature</p>
+          </div>
+          <div id="stamp" class="stamp hidden">
+            <span id="stamp-top" class="stamp-top"></span>
+            <span id="stamp-bottom" class="stamp-bottom"></span>
+          </div>
+        </div>
+      </article>
+
+      <footer>
+        <p>
+          Valid for public holidays in the next 7 days. Live data from the
+          <a href="https://date.nager.at" target="_blank" rel="noopener"
+            >Nager.Date API</a
+          >.
+        </p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
