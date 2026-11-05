@@ -1,0 +1,321 @@
+/* Colours and fonts */
+:root {
+  --ink: #1b2bbe;
+  --cream: #fff8e8;
+  --pink: #ffd9e0;
+  --yellow: #ffdc55;
+  --red: #c40018;
+  --display: "Big Shoulders Display", Impact, sans-serif;
+}
+
+/* Page */
+* {
+  box-sizing: border-box;
+}
+p {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: "Special Elite", "Courier New", monospace;
+}
+
+main {
+  min-height: 100vh;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 48px 40px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 44px 72px;
+  align-items: start;
+}
+
+/* Title and intro */
+h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(84px, 11.5vw, 172px);
+  font-weight: 900;
+  line-height: 0.84;
+}
+
+.pitch {
+  max-width: 28em;
+  margin: 46px 0 36px;
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+/* Name input and button */
+.controls {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+input {
+  height: 52px;
+  border: 0;
+  border-bottom: 3px solid var(--cream);
+  background: transparent;
+  color: var(--cream);
+  font: inherit;
+  font-size: 22px;
+}
+
+input::placeholder {
+  color: #d5d9ff;
+}
+
+button {
+  min-height: 62px;
+  margin-top: 14px;
+  border: 0;
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--cream);
+}
+button:disabled {
+  background: #aab0ee;
+  cursor: wait;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.count {
+  max-width: 480px;
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Paper stack: white and yellow copies sit behind the pink note */
+.paperwork {
+  position: relative;
+  margin: 10px 12px 18px 0;
+}
+
+.paperwork::before,
+.paperwork::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: rotate(2.6deg);
+}
+
+.paperwork::after {
+  background: var(--yellow);
+  transform: rotate(1.2deg);
+}
+
+/* Pink note */
+.note {
+  position: relative;
+  z-index: 1;
+  padding: clamp(24px, 3.6vw, 48px);
+  background: var(--pink);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.note.refiled {
+  animation: refile 0.3s ease-out;
+}
+
+@keyframes refile {
+  from {
+    transform: rotate(-1.4deg);
+  }
+}
+
+/* Note header */
+.note-header {
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.office,
+.form-number {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.form-number {
+  margin-top: 12px;
+}
+
+h2 {
+  margin: 2px 0 0;
+  font-family: var(--display);
+  font-size: clamp(38px, 4.4vw, 56px);
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+/* Note message */
+.note-body {
+  font-size: clamp(19px, 1.8vw, 23px);
+  line-height: 1.5;
+}
+
+.note-body p + p {
+  margin-top: 12px;
+}
+
+/* Date, country and proximity details */
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.details > div,
+.credibility {
+  padding-top: 8px;
+  border-top: 2px solid var(--ink);
+}
+
+.detail-label {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.detail-value {
+  margin-top: 3px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+/* The bar width comes from the API's holiday date */
+.meter {
+  height: 20px;
+  margin-top: 10px;
+  border: 2px solid var(--ink);
+}
+
+.meter-fill {
+  width: 0;
+  height: 100%;
+  background: var(--ink);
+  transition: width 0.35s;
+}
+
+/* Signature */
+.note-footer {
+  min-height: 136px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.signature {
+  flex: 1;
+}
+
+.signature-name {
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--ink);
+  font-size: 18px;
+}
+
+/* Stamp: its colour depends on the API's holiday date */
+.stamp {
+  padding: 10px 18px 12px;
+  border: 6px double currentColor;
+  font-family: var(--display);
+  font-weight: 900;
+  text-align: center;
+  mix-blend-mode: multiply;
+  transform: rotate(-9deg);
+}
+
+.stamp span {
+  display: block;
+}
+
+.stamp-top {
+  font-size: 52px;
+  line-height: 0.95;
+}
+
+.stamp-bottom {
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.stamp.today {
+  color: var(--red);
+}
+.stamp.upcoming {
+  color: var(--ink);
+}
+.stamp.hidden {
+  visibility: hidden;
+}
+.stamp.landing {
+  animation: stamp-down 0.3s ease-out both;
+}
+
+@keyframes stamp-down {
+  from {
+    opacity: 0;
+    transform: rotate(-9deg) scale(2.4);
+  }
+}
+
+/* Footer */
+footer {
+  grid-column: 1 / -1;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+footer a {
+  color: var(--cream);
+}
+footer a:hover {
+  color: var(--yellow);
+}
+footer a:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* Turn off motion for people who prefer less animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
